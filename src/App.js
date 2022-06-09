@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { useState } from "react";
 import "./App.css";
 import AddEmployee from "./components/AddEmployee";
 import EditEmployee from "./components/EditEmployee";
@@ -19,11 +20,13 @@ function App() {
 
   const addNewEmployee = (empObj) => {
     setEmpArr([...empArr, empObj]);
+    Swal.fire("Cool", "Employee Added Successfully", "success");
   };
   const deleteEmployee = (eId) => {
     setIsEdit(false);
     const filteredArr = empArr.filter((emp) => emp.eId !== eId);
     setEmpArr([...filteredArr]);
+    Swal.fire("DELETED", "Employee Deleted Successfully", "warning");
   };
   const editEmployee = (eId) => {
     setIsEdit(true);
@@ -33,6 +36,7 @@ function App() {
   const updateEmployee = (eId, updatedEmpObj) => {
     setIsEdit(false);
     setEmpArr(empArr.map((emp) => (emp.eId === eId ? updatedEmpObj : emp)));
+    Swal.fire("WOW", "Employee Updated Successfully", "success");
   };
 
   return (
